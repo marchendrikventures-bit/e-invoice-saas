@@ -165,7 +165,7 @@
   },
   "Legal": {
     "impressum_title": "Legal Notice",
-    "impressum_body": "<h3>Information according to \u00a7 5 TMG</h3>\n<p>\n  <strong>Max Mustermann</strong><br />\n  Musterstra\u00dfe 123<br />\n  12345 Musterstadt<br />\n  Germany\n</p>\n<h3>Contact</h3>\n<p>\n  Phone: +49 (0) 123 44 55 66<br />\n  Email: info@musterfirma.de\n</p>",
+    "impressum_body": "<h3>Information according to \u00a7 5 TMG</h3>\n<p>\n  <strong>Marc Szymkowiak</strong><br />\n  Praceta Luanda 7<br />\n  2ESQ<br />\n  2780-018 OEIRAS<br />\n  Portugal\n</p>\n<h3>Contact</h3>\n<p>\n  Email: marc.hendrik.ventures@gmail.com\n</p>",
     "privacy_title": "Privacy Policy",
     "privacy_body": "<p>We take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this privacy policy.</p>\n<h3>1. Data collection on this website</h3>\n<p>Your data is collected when you provide it to us. This could be, for example, data you enter into a contact form.</p>\n<h3>2. Use of the E-Invoicing feature</h3>\n<p>The invoice data (customer and item data) that you enter or upload to our platform is processed exclusively in memory and is not stored permanently. After generating the PDF/XML file, this data is discarded.</p>",
     "avv_title": "Data Processing Agreement (DPA)",
