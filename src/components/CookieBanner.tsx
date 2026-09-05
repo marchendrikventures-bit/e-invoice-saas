@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function CookieBanner() {
   const [show, setShow] = useState(false);
+  const t = useTranslations('CookieBanner');
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie-consent');
@@ -33,16 +35,16 @@ export default function CookieBanner() {
                 </svg>
               </span>
               <p className="ml-3 font-medium text-white truncate">
-                <span className="md:hidden">We use cookies.</span>
-                <span className="hidden md:inline">This website uses essential cookies to ensure you get the best experience on our website. We do not use tracking or analytics cookies.</span>
+                <span className="md:hidden">{t('title')}</span>
+                <span className="hidden md:inline">{t('description')}</span>
               </p>
             </div>
             <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto flex space-x-2">
               <button onClick={accept} className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-white hover:bg-gray-50">
-                Accept
+                {t('accept')}
               </button>
               <button onClick={decline} className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700">
-                Decline
+                {t('decline')}
               </button>
             </div>
           </div>

@@ -3,8 +3,10 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function Settings() {
+  const t = useTranslations('Settings');
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -86,9 +88,9 @@ export default function Settings() {
       });
 
       if (res.ok) {
-        setMessage('Settings saved successfully!');
+        setMessage(t('success'));
       } else {
-        setMessage('Failed to save settings.');
+        setMessage(t('error'));
       }
     } catch (err) {
       setMessage('An error occurred.');
@@ -97,7 +99,7 @@ export default function Settings() {
     }
   };
 
-  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return <div className="text-center py-20">{t('loading')}</div>;
 
   const InputField = ({ label, value, onChange, required = false }: any) => (
     <div className="mb-4">
@@ -108,10 +110,10 @@ export default function Settings() {
 
   return (
     <div className="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Account Settings</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Account {t('title')}</h1>
       
       <div className="bg-white shadow sm:rounded-lg p-6 mb-8">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Your Details (Seller)</h2>
+        <h2 className="text-lg font-medium text-gray-900 mb-4">{t('company_info')}</h2>
         <p className="text-sm text-gray-500 mb-6">
           These details will be used automatically as the "Supplier" (Creator) when generating e-invoices.
         </p>
@@ -123,34 +125,34 @@ export default function Settings() {
         )}
 
         <form onSubmit={handleSave}>
-          <InputField label="Company Name *" required value={settings.companyName} onChange={(e: any) => setSettings({...settings, companyName: e.target.value})} />
+          <InputField label={`${t("company_name")} *`} required value={settings.companyName} onChange={(e: any) => setSettings({...settings, companyName: e.target.value})} />
           <div className="grid grid-cols-2 gap-4">
-            <InputField label="Street" value={settings.street} onChange={(e: any) => setSettings({...settings, street: e.target.value})} />
-            <InputField label="City" value={settings.city} onChange={(e: any) => setSettings({...settings, city: e.target.value})} />
+            <InputField label={t("street")} value={settings.street} onChange={(e: any) => setSettings({...settings, street: e.target.value})} />
+            <InputField label={t("city")} value={settings.city} onChange={(e: any) => setSettings({...settings, city: e.target.value})} />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <InputField label="ZIP Code" value={settings.zip} onChange={(e: any) => setSettings({...settings, zip: e.target.value})} />
-            <InputField label="Country Code (e.g. DE)" value={settings.country} onChange={(e: any) => setSettings({...settings, country: e.target.value})} />
+            <InputField label={t("zip")} value={settings.zip} onChange={(e: any) => setSettings({...settings, zip: e.target.value})} />
+            <InputField label={t("country")} value={settings.country} onChange={(e: any) => setSettings({...settings, country: e.target.value})} />
           </div>
-          <InputField label="VAT ID (Umsatzsteuer-ID)" value={settings.vat} onChange={(e: any) => setSettings({...settings, vat: e.target.value})} />
+          <InputField label={t("vat")} value={settings.vat} onChange={(e: any) => setSettings({...settings, vat: e.target.value})} />
           
-          <h3 className="text-md font-medium text-gray-900 mt-8 mb-4 border-t pt-6">Bank Details</h3>
-          <InputField label="IBAN" value={settings.iban} onChange={(e: any) => setSettings({...settings, iban: e.target.value})} />
+          <h3 className="text-md font-medium text-gray-900 mt-8 mb-4 border-t pt-6">{t('bank_details')}</h3>
+          <InputField label={t("iban")} value={settings.iban} onChange={(e: any) => setSettings({...settings, iban: e.target.value})} />
           <div className="grid grid-cols-2 gap-4">
-            <InputField label="BIC" value={settings.bic} onChange={(e: any) => setSettings({...settings, bic: e.target.value})} />
-            <InputField label="Bank Name" value={settings.bankName} onChange={(e: any) => setSettings({...settings, bankName: e.target.value})} />
+            <InputField label={t("bic")} value={settings.bic} onChange={(e: any) => setSettings({...settings, bic: e.target.value})} />
+            <InputField label={t("bank_name")} value={settings.bankName} onChange={(e: any) => setSettings({...settings, bankName: e.target.value})} />
           </div>
 
           {tier === 'PRO' && (
             <>
-              <h3 className="text-md font-medium text-gray-900 mt-8 mb-4 border-t pt-6">Branding (Pro)</h3>
+              <h3 className="text-md font-medium text-gray-900 mt-8 mb-4 border-t pt-6">{t('branding_pro')}</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">Brand Color</label>
+                  <label className="block text-sm font-medium text-gray-700">{t('brand_color')}</label>
                   <input type="color" value={settings.brandColor} onChange={(e) => setSettings({...settings, brandColor: e.target.value})} className="mt-1 h-10 w-full cursor-pointer rounded-md border-gray-300" />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">Logo (Image)</label>
+                  <label className="block text-sm font-medium text-gray-700">{t('logo')}</label>
                   <input type="file" accept="image/png, image/jpeg" onChange={handleLogoUpload} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                   {settings.logoBase64 && <img src={settings.logoBase64} alt="Logo Preview" className="mt-2 h-12 object-contain" />}
                 </div>
@@ -164,7 +166,7 @@ export default function Settings() {
               disabled={saving}
               className="inline-flex justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm bg-blue-600 hover:bg-blue-500 focus-visible:outline disabled:bg-blue-300"
             >
-              {saving ? 'Saving...' : 'Save Settings'}
+              {saving ? t('saving') : 'Save Settings'}
             </button>
           </div>
         </form>
@@ -172,7 +174,7 @@ export default function Settings() {
 
       {tier === 'PRO' && (
         <div className="bg-white shadow sm:rounded-lg p-6">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">Developer API (Pro)</h2>
+          <h2 className="text-lg font-medium text-gray-900 mb-4">{t('api_pro')}</h2>
           <p className="text-sm text-gray-500 mb-6">
             Use this API key to automate invoice generation from your own systems (e.g., WooCommerce, Shopify).
           </p>

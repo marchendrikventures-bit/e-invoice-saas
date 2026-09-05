@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
+  const t = useTranslations('Auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -30,7 +32,7 @@ export default function Login() {
     <div className="flex min-h-[80vh] items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('login_title')}</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
@@ -97,7 +99,7 @@ export default function Login() {
         </div>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Don't have an account? <Link href="/register" className="font-semibold text-blue-600 hover:text-blue-500">Sign up</Link>
+          Don't have an account? <Link href="/register" className="font-semibold text-blue-600 hover:text-blue-500">{t('login_register')}</Link>
         </p>
       </div>
     </div>

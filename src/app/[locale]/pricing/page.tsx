@@ -57,7 +57,7 @@ export default function PricingPage() {
               <h3 className="text-lg font-semibold leading-8 text-gray-900">{t('guest')}</h3>
               <p className="mt-4 text-sm leading-6 text-gray-600">{t('guest_desc')}</p>
               <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight text-gray-900">0 €</span>
+                <span className="text-4xl font-bold tracking-tight text-gray-900">{t('free_price')}</span>
               </p>
               <ul className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
                 {guestFeatures.map((f, i) => (
@@ -83,7 +83,7 @@ export default function PricingPage() {
               <h3 className="text-lg font-semibold leading-8 text-gray-900">{t('free')}</h3>
               <p className="mt-4 text-sm leading-6 text-gray-600">{t('free_desc')}</p>
               <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight text-gray-900">0 €</span>
+                <span className="text-4xl font-bold tracking-tight text-gray-900">{t('free_price')}</span>
               </p>
               <ul className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
                 {freeFeatures.map((f, i) => (
@@ -103,7 +103,7 @@ export default function PricingPage() {
             )}
           </div>
 
-          {/* PRO */}
+          {/* {t('pro')} */}
           <div className="relative rounded-3xl p-8 ring-2 ring-blue-600 xl:p-10 flex flex-col justify-between bg-blue-900 shadow-xl transform scale-105 z-10 transition-transform duration-300">
             <div className="absolute top-0 right-6 transform -translate-y-1/2">
               <span className="bg-blue-500 text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full">{t('most_popular')}</span>
@@ -112,7 +112,7 @@ export default function PricingPage() {
               <h3 className="text-lg font-semibold leading-8 text-white">{t('pro')}</h3>
               <p className="mt-4 text-sm leading-6 text-blue-200">{t('pro_desc')}</p>
               <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight text-white">12,95 €</span>
+                <span className="text-4xl font-bold tracking-tight text-white">{t('pro_price')}</span>
                 <span className="text-sm font-semibold leading-6 text-blue-200">/Monat</span>
               </p>
               <ul className="mt-8 space-y-3 text-sm leading-6 text-blue-100">
@@ -128,7 +128,7 @@ export default function PricingPage() {
               disabled={loading || (session?.user as any)?.tier === 'PRO'}
               className="mt-8 block w-full rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 disabled:bg-gray-500"
             >
-              {(session?.user as any)?.tier === 'PRO' ? t('current_plan') : (loading ? '...' : t('button_pro'))}
+              {(session?.user as any)?.tier === 'PRO' ? t('current') : (loading ? '...' : t('upgrade'))}
             </button>
           </div>
 

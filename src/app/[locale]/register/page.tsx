@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Register() {
+  const t = useTranslations('Auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -23,13 +25,13 @@ export default function Register() {
     setError('');
 
     if (password.length < 8) {
-      setError('Passwort muss mindestens 8 Zeichen lang sein.');
+      setError(t('reg_error'));
       setLoading(false);
       return;
     }
 
     if (!termsAccepted || !privacyAccepted || !avvAccepted) {
-      setError('Sie müssen allen rechtlichen Vereinbarungen zustimmen, um sich zu registrieren.');
+      setError(t('google_error'));
       setLoading(false);
       return;
     }
@@ -58,7 +60,7 @@ export default function Register() {
     <div className="flex min-h-[80vh] items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create your account</h2>
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('reg_title')}</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
@@ -77,7 +79,7 @@ export default function Register() {
                 <input id="terms" type="checkbox" required checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="terms">Ich akzeptiere die <Link href="/de/impressum" className="text-blue-600 hover:underline">Allgemeinen Geschäftsbedingungen (AGB)</Link>.</label>
+                <label htmlFor="terms">{t('reg_agree')} <Link href="/de/impressum" className="text-blue-600 hover:underline">{t('reg_terms')}</Link>.</label>
               </div>
             </div>
             <div className="flex items-start">
@@ -85,7 +87,7 @@ export default function Register() {
                 <input id="privacy" type="checkbox" required checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="privacy">Ich habe die <Link href="/de/privacy" className="text-blue-600 hover:underline">Datenschutzerklärung</Link> gelesen und stimme ihr zu.</label>
+                <label htmlFor="privacy">{t('reg_privacy_read')} <Link href="/de/privacy" className="text-blue-600 hover:underline">{t('reg_privacy')}</Link> {t('reg_privacy_agree')}</label>
               </div>
             </div>
             <div className="flex items-start">
@@ -93,7 +95,7 @@ export default function Register() {
                 <input id="avv" type="checkbox" required checked={avvAccepted} onChange={(e) => setAvvAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="avv">Ich schließe hiermit den <Link href="/de/avv" className="text-blue-600 hover:underline">Auftragsverarbeitungsvertrag (AVV)</Link> gemäß Art. 28 DSGVO mit dem Anbieter.</label>
+                <label htmlFor="avv">{t('reg_avv_agree')} <Link href="/de/avv" className="text-blue-600 hover:underline">{t('reg_avv')}</Link> gemäß Art. 28 DSGVO mit dem Anbieter.</label>
               </div>
             </div>
           </div>
@@ -119,7 +121,7 @@ export default function Register() {
             <button
               onClick={() => {
                 if (!termsAccepted || !privacyAccepted || !avvAccepted) {
-                  setError('Bitte akzeptieren Sie alle rechtlichen Vereinbarungen, bevor Sie sich mit Google anmelden.');
+                  setError(t('google_error'));
                   return;
                 }
                 signIn('google', { callbackUrl: '/dashboard' });
@@ -150,7 +152,7 @@ export default function Register() {
         </div>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Already have an account? <Link href="/login" className="font-semibold text-blue-600 hover:text-blue-500">Sign in</Link>
+          Already have an account? <Link href="/login" className="font-semibold text-blue-600 hover:text-blue-500">{t('login_btn')}</Link>
         </p>
       </div>
     </div>

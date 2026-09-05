@@ -1,8 +1,10 @@
 'use client';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export default function ForgotPassword() {
+  const t = useTranslations('Auth');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -45,7 +47,7 @@ export default function ForgotPassword() {
   return (
     <div className="flex min-h-[80vh] items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-md space-y-8">
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Reset your password</h2>
+        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('forgot_title')}</h2>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <div>
