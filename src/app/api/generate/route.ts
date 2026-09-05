@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { InvoiceService, invoiceSchema } from '@e-invoice-eu/core';
 import { parse } from 'csv-parse/sync';
 import * as xlsx from 'xlsx';
-import Ajv from 'ajv';
+import Ajv from 'ajv/dist/2019';
 import addFormats from 'ajv-formats';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
