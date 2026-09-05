@@ -22,6 +22,12 @@ export default function Register() {
     setLoading(true);
     setError('');
 
+    if (password.length < 8) {
+      setError('Passwort muss mindestens 8 Zeichen lang sein.');
+      setLoading(false);
+      return;
+    }
+
     if (!termsAccepted || !privacyAccepted || !avvAccepted) {
       setError('Sie müssen allen rechtlichen Vereinbarungen zustimmen, um sich zu registrieren.');
       setLoading(false);
@@ -111,7 +117,13 @@ export default function Register() {
 
           <div className="mt-6">
             <button
-              onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+              onClick={() => {
+                if (!termsAccepted || !privacyAccepted || !avvAccepted) {
+                  setError('Bitte akzeptieren Sie alle rechtlichen Vereinbarungen, bevor Sie sich mit Google anmelden.');
+                  return;
+                }
+                signIn('google', { callbackUrl: '/dashboard' });
+              }}
               className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
             >
               <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">

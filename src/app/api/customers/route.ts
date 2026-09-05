@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -19,13 +20,14 @@ export async function GET() {
 
     return NextResponse.json(customers);
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('Customers GET error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -35,20 +37,26 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
 
+    // Input validation
+    if (!data.name || typeof data.name !== 'string' || data.name.trim().length === 0) {
+      return NextResponse.json({ error: 'Customer name is required' }, { status: 400 });
+    }
+
     const customer = await prisma.customer.create({
       data: {
         userId: user.id,
-        name: data.name,
-        street: data.street,
-        city: data.city,
-        zip: data.zip,
-        country: data.country || 'DE',
-        vat: data.vat
+        name: data.name.trim().substring(0, 200),
+        street: data.street?.trim().substring(0, 200) || null,
+        city: data.city?.trim().substring(0, 100) || null,
+        zip: data.zip?.trim().substring(0, 20) || null,
+        country: data.country?.trim().substring(0, 5) || 'DE',
+        vat: data.vat?.trim().substring(0, 50) || null
       }
     });
 
     return NextResponse.json(customer);
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('Customers POST error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

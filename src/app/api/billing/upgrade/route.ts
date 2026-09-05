@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('Stripe checkout error:', error);
+    return NextResponse.json({ error: 'Failed to create checkout session. Please try again.' }, { status: 500 });
   }
 }

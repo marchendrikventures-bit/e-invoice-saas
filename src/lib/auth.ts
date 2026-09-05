@@ -5,12 +5,22 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 
+// SECURITY: Fail fast if critical env vars are missing in production
+if (process.env.NODE_ENV === 'production') {
+  if (!process.env.NEXTAUTH_SECRET) {
+    throw new Error('FATAL: NEXTAUTH_SECRET is not set. Refusing to start.');
+  }
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    throw new Error('FATAL: GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET is not set.');
+  }
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || 'mock-client-id',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'mock-client-secret',
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
     CredentialsProvider({
       name: 'Credentials',
@@ -50,5 +60,5 @@ export const authOptions: NextAuthOptions = {
     }
   },
   pages: { signIn: '/login' },
-  secret: process.env.NEXTAUTH_SECRET || 'fallback-secret-for-development-only',
+  secret: process.env.NEXTAUTH_SECRET,
 };

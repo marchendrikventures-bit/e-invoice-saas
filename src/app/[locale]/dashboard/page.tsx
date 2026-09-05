@@ -154,7 +154,7 @@ export default function Dashboard() {
           <div className="flex">
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
-                Sie nutzen die Plattform als Gast (Unregistriert). Sie können Rechnungen bis max. 150 € erstellen. <Link href="/register" className="font-bold underline">Kostenlos registrieren</Link> für bis zu 1000 € und gespeicherte Stammdaten.
+                Sie nutzen die Plattform als Gast (Unregistriert). Sie können Rechnungen bis max. 100 € erstellen. <Link href="/register" className="font-bold underline">Kostenlos registrieren</Link> für bis zu 500 € und gespeicherte Stammdaten.
               </p>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function Dashboard() {
                 type="button"
                 onClick={async () => {
                   if (!customer.name) return alert('Bitte Firmenname ausfüllen');
-                  const res = await fetch('/api/customers', { method: 'POST', body: JSON.stringify(customer) });
+                  const res = await fetch('/api/customers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(customer) });
                   if (res.ok) {
                     const newCust = await res.json();
                     setSavedCustomers([...savedCustomers, newCust]);
@@ -350,7 +350,7 @@ export default function Dashboard() {
                     <button 
                       onClick={async () => {
                         if (!item.description) return alert('Bezeichnung fehlt');
-                        const res = await fetch('/api/catalog', { method: 'POST', body: JSON.stringify(item) });
+                        const res = await fetch('/api/catalog', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(item) });
                         if (res.ok) {
                           const newItem = await res.json();
                           setSavedCatalog([...savedCatalog, newItem]);

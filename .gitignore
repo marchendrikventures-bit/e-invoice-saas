@@ -39,5 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev/test artifacts
 *.db
 *.db-journal
+test*.csv
+test*.js
+test*.mjs
+mock-*.csv
+screenshot_*.png
+generate_messages.js
+update_*_messages.js
+mapping-schema.json
+schema.json

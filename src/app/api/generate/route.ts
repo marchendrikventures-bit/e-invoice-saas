@@ -7,6 +7,7 @@ import * as xlsx from 'xlsx';
 import Ajv from 'ajv/dist/2019';
 import addFormats from 'ajv-formats';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 const ajv = new Ajv({ strict: false, allErrors: true });
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
       const apiKey = authHeader.split(' ')[1];
       user = await prisma.user.findUnique({ where: { apiKey } });
     } else {
-      const session = await getServerSession();
+      const session = await getServerSession(authOptions);
       if (session && session.user?.email) {
         user = await prisma.user.findUnique({
           where: { email: session.user.email },
@@ -81,6 +82,11 @@ export async function POST(req: NextRequest) {
       const formData = await req.formData();
       const file = formData.get('file') as File;
       if (!file) return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+
+      // SECURITY: Enforce 10MB file size limit
+      if (file.size > 10 * 1024 * 1024) {
+        return NextResponse.json({ error: 'File size exceeds 10MB limit' }, { status: 413 });
+      }
 
       const customerStr = formData.get('customer') as string;
       if (customerStr) customer = JSON.parse(customerStr);
