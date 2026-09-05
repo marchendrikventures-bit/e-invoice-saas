@@ -1,0 +1,108 @@
+{
+  "Nav": {
+    "dashboard": "Tableau de bord",
+    "pricing": "Tarifs",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "logout": "Se déconnecter",
+    "settings": "Paramètres"
+  },
+  "Pricing": {
+    "title": "Tarifs et Licences",
+    "subtitle": "Factures électroniques simples et conformes",
+    "desc": "Sur notre plateforme, vous pouvez facilement créer des factures électroniques au format standardisé XRechnung. Ce format est conforme aux exigences de la directive européenne et est reconnu et accepté par les entreprises et les autorités publiques.",
+    "guest": "Non inscrit",
+    "guest_desc": "Générez des factures rapidement sans inscription.",
+    "guest_features": [
+      "Facture électronique selon la norme EN-16931",
+      "Crypté SSL",
+      "Conforme au RGPD",
+      "Serveurs situés en Allemagne",
+      "Créer des factures électroniques au format XRechnung",
+      "Valider les factures électroniques",
+      "Télécharger le fichier XML",
+      "Montant de la facture jusqu'à 100 € max"
+    ],
+    "free": "Inscription gratuite",
+    "free_desc": "Pour les utilisateurs réguliers souhaitant enregistrer leurs données.",
+    "free_features": [
+      "Toutes les fonctionnalités de \"Non inscrit\"",
+      "Carnet d'adresses clients (CRM Light)",
+      "Catalogue de produits/services personnalisé",
+      "Enregistrer les données de base (remplissage auto)",
+      "Accord de traitement des données (DPA)",
+      "Montant de la facture jusqu'à 500 € max"
+    ],
+    "pro": "Business",
+    "pro_desc": "Pour les entreprises ayant des besoins de facturation illimités et un confort maximal.",
+    "pro_features": [
+      "Toutes les fonctionnalités \"Gratuit\"",
+      "Montants de facturation illimités",
+      "Génération de PDF/A-3 ZUGFeRD authentique",
+      "Support Premium"
+    ],
+    "button_guest": "Essayer maintenant",
+    "button_free": "S'inscrire gratuitement",
+    "button_pro": "Passer à Business",
+    "current_plan": "Plan Actuel",
+    "disclaimer": "La durée minimale du contrat est d'un mois et l'abonnement peut être annulé à tout moment en un clic via ce site web. Les prix incluent la TVA.",
+    "payment_methods": "Moyens de paiement:",
+    "payment_methods_list": "PayPal, Carte de crédit, Facture (Virement bancaire)",
+    "most_popular": "Le plus populaire"
+  },
+  "Dashboard": {
+    "title": "Tableau de bord",
+    "guest_warning": "Vous utilisez la plateforme en tant qu'invité.",
+    "seller_details": "Vos Détails (Vendeur)",
+    "buyer_details": "Détails du Client (Acheteur)",
+    "generate": "Générer la facture",
+    "upload": "Télécharger les articles"
+  },
+  "Impressum": {
+    "title": "Mentions Légales",
+    "info": "Informations conformément au § 5 TMG",
+    "company": "E-Invoice SaaS Provider GmbH",
+    "represented_by": "Représenté par :",
+    "contact": "Contact :",
+    "register": "Inscription au registre :",
+    "register_info": "Inscription au registre du commerce. Tribunal d'enregistrement : Amtsgericht Musterstadt. Numéro de registre : HRB 999999",
+    "vat": "Numéro de TVA :",
+    "vat_info": "Numéro d'identification à la taxe sur la valeur ajoutée conformément au § 27 a de la loi sur la taxe sur la valeur ajoutée : DE 999 999 999",
+    "responsible": "Responsable du contenu selon le § 55 Abs. 2 RStV :"
+  },
+  "Privacy": {
+    "title": "Politique de Confidentialité (Datenschutzerklärung)",
+    "intro": "Bienvenue dans notre Politique de Confidentialité. Votre vie privée est essentielle pour nous.",
+    "h1": "1. Le Traitement des Données en un Coup d'Œil",
+    "p1": "Nous traitons les données personnelles uniquement lorsque cela est strictement nécessaire. La fonction principale de ce service (conversion de fichiers CSV/Excel en Factures Électroniques) se déroule entièrement en mémoire (RAM).",
+    "h2": "2. Aucune Conservation de Données",
+    "p2": "Les fichiers téléchargés sur nos serveurs sont traités immédiatement et conservés uniquement dans la RAM. Ils ne sont jamais stockés sur un support persistant (disque) et sont complètement supprimés une fois la demande terminée. Nous ne conservons aucun journal des factures générées ou des données de vos clients.",
+    "h3": "3. Cookies",
+    "p3": "Nous utilisons une entrée de stockage local strictement nécessaire pour mémoriser vos préférences de consentement aux cookies. Nous n'utilisons aucun cookie d'analyse tiers, de marketing ou de suivi.",
+    "h4": "4. Vos Droits",
+    "p4": "Conformément au RGPD, vous avez le droit d'accéder, de rectifier ou de supprimer vos données personnelles. Cependant, comme nous ne stockons aucune donnée de facturation, il n'y a aucune donnée à consulter, rectifier ou supprimer sur nos serveurs après la fin de votre session.",
+    "h5": "5. Contact",
+    "p5": "Pour toute question relative à la confidentialité, veuillez nous contacter à privacy@einvoice-saas.example.com."
+  },
+  "AVV": {
+    "title": "Accord de Traitement des Données (DPA)",
+    "intro": "Cet Accord de Traitement des Données (DPA) conformément à l'Art. 28 du RGPD est conclu entre l'utilisateur (Responsable du Traitement) et nous (Sous-traitant) lors de l'inscription sur notre plateforme.",
+    "h1": "1. Objet du Traitement",
+    "p1": "Le Sous-traitant fournit des services dans le domaine de la création de factures électroniques pour le Responsable. Des données personnelles sont traitées dans ce cadre. L'application fonctionne fondamentalement en 'Mémoire Uniquement'. Aucun fichier XML de facture ou métadonnées de facture (comme les adresses des acheteurs) n'est stocké de façon permanente sur nos serveurs. Toutes les factures générées sont immédiatement supprimées de la mémoire volatile après génération.",
+    "h2": "2. Types de Données Traitées",
+    "li1": "Coordonnées (Nom, Adresse, Email) du destinataire de la facture.",
+    "li2": "Données d'entreprise du destinataire (Numéro de TVA, Adresse).",
+    "li3": "Données de facturation (Montants, Articles, Numéro de facture).",
+    "h3": "3. Durée du Traitement",
+    "p3": "Le traitement a lieu exclusivement au moment de la génération du fichier XML/PDF ('À la volée'). La durée du traitement des données est limitée à quelques millisecondes ou secondes. Après le téléchargement du fichier par le Responsable, les données sont irrémédiablement supprimées.",
+    "h4": "4. Mesures Techniques et Organisationnelles (TOM)",
+    "p4": "Nous garantissons que tous les serveurs (Emplacement : Allemagne) sont exploités selon les normes de sécurité actuelles (cryptage SSL). Puisqu'il n'y a pas de stockage persistant des données de facturation, le risque de violation de données est systématiquement réduit à un minimum absolu.",
+    "h5": "5. Consentement",
+    "p5": "En créant un compte sur notre plateforme (Gratuit ou Business), le Responsable accepte automatiquement ce DPA."
+  },
+  "Footer": {
+    "impressum": "Mentions Légales",
+    "privacy": "Confidentialité",
+    "avv": "ATD (Traitement des données)"
+  }
+}

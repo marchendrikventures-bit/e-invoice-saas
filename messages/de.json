@@ -1,0 +1,108 @@
+{
+  "Nav": {
+    "dashboard": "Dashboard",
+    "pricing": "Preise",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "settings": "Einstellungen"
+  },
+  "Pricing": {
+    "title": "Preise und Lizenzen",
+    "subtitle": "E-Rechnungen einfach und konform",
+    "desc": "Auf unserer Plattform erstellen Sie E-Rechnungen ganz einfach im standardisierten XRechnungs-Format. Dieses Format entspricht den Anforderungen der EU-Richtlinie und wird von Unternehmen sowie öffentlichen Auftraggebern anerkannt und akzeptiert.",
+    "guest": "Unregistriert",
+    "guest_desc": "Schnell und ohne Anmeldung Rechnungen generieren.",
+    "guest_features": [
+      "E-Rechnung nach Standard EN-16931",
+      "SSL verschlüsselt",
+      "DSGVO konform",
+      "Serverstandort Deutschland",
+      "E-Rechnungen erstellen im standardisierten XRechnungs-Format",
+      "E-Rechnungen validieren",
+      "XML-Datei herunterladen",
+      "Rechnungsbetrag bis maximal 100 €"
+    ],
+    "free": "Kostenlose Registrierung",
+    "free_desc": "Für regelmäßige Nutzer, die ihre Stammdaten speichern möchten.",
+    "free_features": [
+      "Alle Funktionen aus \"Unregistriert\"",
+      "Kunden-Adressbuch (CRM Light)",
+      "Eigener Leistungskatalog / Artikelstamm",
+      "Stammdaten hinterlegen (automatisch eintragen)",
+      "Auftragsverarbeitungsvertrag (AVV)",
+      "Rechnungsbetrag bis maximal 500 €"
+    ],
+    "pro": "Business",
+    "pro_desc": "Für Unternehmen mit unbegrenztem Rechnungsbedarf und maximalem Komfort.",
+    "pro_features": [
+      "Alle Funktionen aus \"Kostenlos\"",
+      "Unbegrenzte Rechnungsbeträge",
+      "Echte ZUGFeRD PDF/A-3 Generierung",
+      "Premium Support"
+    ],
+    "button_guest": "Jetzt ausprobieren",
+    "button_free": "Kostenlos Registrieren",
+    "button_pro": "Business Paket buchen",
+    "current_plan": "Aktueller Plan",
+    "disclaimer": "Die Mindestvertragslaufzeit beträgt einen Monat und das Abonnement ist jederzeit mit einem Klick über diese Website kündbar. Preise inklusive MwSt.",
+    "payment_methods": "Zahlungsarten:",
+    "payment_methods_list": "Paypal, Kreditkarte, Rechnung (Überweisung)",
+    "most_popular": "Meistgewählt"
+  },
+  "Dashboard": {
+    "title": "E-Rechnungen Dashboard",
+    "guest_warning": "Sie nutzen die Plattform als Gast (Unregistriert).",
+    "seller_details": "Ihre Stammdaten (Verkäufer)",
+    "buyer_details": "Kundendaten (Käufer)",
+    "generate": "Rechnung Generieren",
+    "upload": "Posten hochladen"
+  },
+  "Impressum": {
+    "title": "Impressum",
+    "info": "Angaben gemäß § 5 TMG",
+    "company": "E-Invoice SaaS Provider GmbH",
+    "represented_by": "Vertreten durch:",
+    "contact": "Kontakt:",
+    "register": "Registereintrag:",
+    "register_info": "Eintragung im Handelsregister. Registergericht: Amtsgericht Musterstadt. Registernummer: HRB 999999",
+    "vat": "Umsatzsteuer-ID:",
+    "vat_info": "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 999 999 999",
+    "responsible": "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:"
+  },
+  "Privacy": {
+    "title": "Datenschutzerklärung (Privacy Policy)",
+    "intro": "Willkommen bei unserer Datenschutzerklärung. Ihre Privatsphäre ist uns sehr wichtig.",
+    "h1": "1. Datenverarbeitung auf einen Blick",
+    "p1": "Wir verarbeiten personenbezogene Daten nur, wenn dies zwingend erforderlich ist. Die Hauptfunktion dieses Dienstes (Konvertierung von CSV/Excel in E-Rechnungen) erfolgt vollständig im Arbeitsspeicher (RAM).",
+    "h2": "2. Keine Datenspeicherung (No Data Retention)",
+    "p2": "Dateien, die auf unsere Server hochgeladen werden, werden sofort verarbeitet und nur im RAM gehalten. Sie werden niemals auf persistenten Speichern (Festplatten) gespeichert und nach Abschluss der Anfrage vollständig verworfen. Wir führen keine Protokolle über die generierten Rechnungen oder Ihre Kundendaten.",
+    "h3": "3. Cookies",
+    "p3": "Wir verwenden einen zwingend notwendigen Local-Storage-Eintrag, um Ihre Cookie-Einwilligungspräferenzen zu speichern. Wir verwenden keine Drittanbieter-Analyse-, Marketing- oder Tracking-Cookies.",
+    "h4": "4. Ihre Rechte",
+    "p4": "Gemäß DSGVO haben Sie das Recht auf Auskunft, Berichtigung oder Löschung Ihrer personenbezogenen Daten. Da wir jedoch keine Ihrer Rechnungsdaten speichern, gibt es auf unseren Servern nach Beendigung Ihrer Sitzung keine Daten zum Auskunften, Berichtigen oder Löschen.",
+    "h5": "5. Kontakt",
+    "p5": "Für Datenschutzanfragen kontaktieren Sie uns bitte unter privacy@einvoice-saas.example.com."
+  },
+  "AVV": {
+    "title": "Auftragsverarbeitungsvertrag (AVV)",
+    "intro": "Dieser Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO wird zwischen dem Nutzer (Verantwortlicher) und uns (Auftragsverarbeiter) mit der Registrierung auf unserer Plattform geschlossen.",
+    "h1": "1. Gegenstand der Verarbeitung",
+    "p1": "Der Auftragsverarbeiter erbringt für den Verantwortlichen Dienstleistungen im Bereich der E-Rechnungs-Erstellung. Dabei werden personenbezogene Daten verarbeitet. Die Applikation arbeitet grundsätzlich 'Memory-Only'. Es werden keine Rechnungs-XMLs oder Rechnungs-Metadaten (wie Käufer-Adressen) dauerhaft auf unseren Servern gespeichert. Alle erzeugten Rechnungen werden nach der Generierung umgehend aus dem flüchtigen Speicher gelöscht.",
+    "h2": "2. Art der verarbeiteten Daten",
+    "li1": "Kontaktdaten (Name, Adresse, E-Mail) des Rechnungsempfängers.",
+    "li2": "Unternehmensdaten des Rechnungsempfängers (USt-IdNr., Anschrift).",
+    "li3": "Rechnungsdaten (Beträge, Positionen, Rechnungsnummer).",
+    "h3": "3. Dauer der Verarbeitung",
+    "p3": "Die Verarbeitung erfolgt ausschließlich im Moment der Generierung der XML-/PDF-Datei ('On-the-fly'). Die Dauer der Datenverarbeitung beschränkt sich auf wenige Millisekunden bis Sekunden. Nach dem Herunterladen der Datei durch den Verantwortlichen werden die Daten unwiderruflich gelöscht.",
+    "h4": "4. Technische und organisatorische Maßnahmen (TOM)",
+    "p4": "Wir gewährleisten, dass alle Server (Standort Deutschland) nach aktuellen Sicherheitsstandards (SSL-Verschlüsselung) betrieben werden. Da keine persistente Speicherung von Rechnungsdaten stattfindet, ist das Risiko eines Datenabflusses (Data Breach) systemseitig auf ein absolutes Minimum reduziert.",
+    "h5": "5. Zustimmung",
+    "p5": "Durch die Erstellung eines Kontos auf unserer Plattform (Kostenlos oder Business) stimmt der Verantwortliche diesem AVV automatisch zu."
+  },
+  "Footer": {
+    "impressum": "Impressum",
+    "privacy": "Datenschutz",
+    "avv": "AVV (Auftragsverarbeitung)"
+  }
+}

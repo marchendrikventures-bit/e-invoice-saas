@@ -1,0 +1,108 @@
+{
+  "Nav": {
+    "dashboard": "Dashboard",
+    "pricing": "Pricing",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "logout": "Logout",
+    "settings": "Settings"
+  },
+  "Pricing": {
+    "title": "Pricing and Licenses",
+    "subtitle": "E-Invoices simple and compliant",
+    "desc": "On our platform, you can easily create e-invoices in the standardized XRechnung format. This format complies with EU directive requirements and is recognized and accepted by companies and public authorities.",
+    "guest": "Unregistered",
+    "guest_desc": "Generate invoices quickly without registration.",
+    "guest_features": [
+      "E-Invoice according to EN-16931 standard",
+      "SSL encrypted",
+      "GDPR compliant",
+      "Server location Germany",
+      "Create E-Invoices in standardized XRechnung format",
+      "Validate E-Invoices",
+      "Download XML file",
+      "Invoice amount up to max 100 €"
+    ],
+    "free": "Free Registration",
+    "free_desc": "For regular users who want to save their master data.",
+    "free_features": [
+      "All features from \"Unregistered\"",
+      "Customer Address Book (CRM Light)",
+      "Custom Service/Product Catalog",
+      "Store master data (auto-fill)",
+      "Data Processing Agreement (DPA)",
+      "Invoice amount up to max 500 €"
+    ],
+    "pro": "Business",
+    "pro_desc": "For companies with unlimited invoicing needs and maximum comfort.",
+    "pro_features": [
+      "All features from \"Free\"",
+      "Unlimited invoice amounts",
+      "True ZUGFeRD PDF/A-3 Generation",
+      "Premium Support"
+    ],
+    "button_guest": "Try Now",
+    "button_free": "Register for Free",
+    "button_pro": "Upgrade to Business",
+    "current_plan": "Current Plan",
+    "disclaimer": "The minimum contract period is one month and the subscription can be canceled at any time with one click via this website. Prices include VAT.",
+    "payment_methods": "Payment Methods:",
+    "payment_methods_list": "PayPal, Credit Card, Invoice (Bank Transfer)",
+    "most_popular": "Most Popular"
+  },
+  "Dashboard": {
+    "title": "E-Invoice Dashboard",
+    "guest_warning": "You are using the platform as a Guest.",
+    "seller_details": "Your Details (Seller)",
+    "buyer_details": "Client Details (Buyer)",
+    "generate": "Generate Invoice",
+    "upload": "Upload Line Items"
+  },
+  "Impressum": {
+    "title": "Legal Notice (Impressum)",
+    "info": "Information according to § 5 TMG",
+    "company": "E-Invoice SaaS Provider GmbH",
+    "represented_by": "Represented by:",
+    "contact": "Contact:",
+    "register": "Register Entry:",
+    "register_info": "Entry in the Commercial Register. Register Court: Amtsgericht Musterstadt. Register Number: HRB 999999",
+    "vat": "VAT ID:",
+    "vat_info": "Value Added Tax Identification Number according to § 27 a Value Added Tax Act: DE 999 999 999",
+    "responsible": "Responsible for content according to § 55 Abs. 2 RStV:"
+  },
+  "Privacy": {
+    "title": "Privacy Policy (Datenschutzerklärung)",
+    "intro": "Welcome to our Privacy Policy. Your privacy is critically important to us.",
+    "h1": "1. Data Processing at a Glance",
+    "p1": "We process personal data only when strictly necessary. The primary function of this service (converting CSV/Excel files to E-Invoices) happens entirely in memory.",
+    "h2": "2. No Data Retention",
+    "p2": "Files uploaded to our servers are processed immediately and held only in RAM. They are never stored on any persistent storage (disk) and are completely discarded after the request completes. We do not keep logs of the generated invoices or your client data.",
+    "h3": "3. Cookies",
+    "p3": "We use a strictly necessary local storage entry to remember your cookie consent preferences. We do not use any third-party analytics, marketing, or tracking cookies.",
+    "h4": "4. Your Rights",
+    "p4": "Under the GDPR, you have the right to access, rectify, or erase your personal data. However, since we do not store any of your invoice data, there is no data to access, rectify, or erase on our servers after your session ends.",
+    "h5": "5. Contact",
+    "p5": "For privacy inquiries, please contact us at privacy@einvoice-saas.example.com."
+  },
+  "AVV": {
+    "title": "Data Processing Agreement (DPA)",
+    "intro": "This Data Processing Agreement (DPA) according to Art. 28 GDPR is concluded between the user (Data Controller) and us (Data Processor) upon registration on our platform.",
+    "h1": "1. Subject of Processing",
+    "p1": "The Processor provides services in the field of e-invoice creation for the Controller. Personal data is processed in this context. The application basically works 'Memory-Only'. No invoice XMLs or invoice metadata (such as buyer addresses) are permanently stored on our servers. All generated invoices are immediately deleted from volatile memory after generation.",
+    "h2": "2. Types of Processed Data",
+    "li1": "Contact details (Name, Address, Email) of the invoice recipient.",
+    "li2": "Company data of the invoice recipient (VAT ID, Address).",
+    "li3": "Invoice data (Amounts, Items, Invoice Number).",
+    "h3": "3. Duration of Processing",
+    "p3": "Processing takes place exclusively at the moment of XML/PDF file generation ('On-the-fly'). The duration of data processing is limited to a few milliseconds to seconds. After the Controller downloads the file, the data is irrevocably deleted.",
+    "h4": "4. Technical and Organizational Measures (TOM)",
+    "p4": "We ensure that all servers (Location: Germany) are operated according to current security standards (SSL encryption). Since there is no persistent storage of invoice data, the risk of a data breach is systematically reduced to an absolute minimum.",
+    "h5": "5. Consent",
+    "p5": "By creating an account on our platform (Free or Business), the Controller automatically agrees to this DPA."
+  },
+  "Footer": {
+    "impressum": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "avv": "DPA (Data Processing)"
+  }
+}
