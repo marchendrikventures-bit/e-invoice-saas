@@ -141,7 +141,7 @@ export default function Dashboard() {
   const InputField = ({ label, value, onChange, required = false }: any) => (
     <div className="mb-3">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
-      <input type="text" required={required} value={value} onChange={onChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border" />
+      <input type="text" required={required} value={value} onChange={onChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" />
     </div>
   );
 
@@ -165,17 +165,17 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {session ? (
-          <div className="bg-white shadow sm:rounded-lg p-6 flex flex-col justify-center items-center text-center">
+          <div className="bg-white shadow-md sm:rounded-xl border border-gray-100 p-6 flex flex-col justify-center items-center text-center">
             <h2 className="text-lg font-medium text-gray-900 mb-2">{t('supplier_title_auth')}</h2>
             <p className="text-sm text-gray-500 mb-4">
               {t('supplier_desc_auth')}
             </p>
-            <Link href="/settings" className="text-sm font-medium text-blue-600 hover:text-blue-500 bg-blue-50 px-4 py-2 rounded-md">
+            <Link href="/settings" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 bg-indigo-50 px-4 py-2 rounded-md">
               {t('supplier_edit')}
             </Link>
           </div>
         ) : (
-          <div className="bg-white shadow sm:rounded-lg p-6">
+          <div className="bg-white shadow-md sm:rounded-xl border border-gray-100 p-6">
             <h2 className="text-lg font-medium text-gray-900 mb-4">{t('supplier_title_guest')}</h2>
             <InputField label={t("company_name")} required value={supplier.name} onChange={(e: any) => setSupplier({...supplier, name: e.target.value})} />
             <div className="grid grid-cols-2 gap-4">
@@ -190,12 +190,12 @@ export default function Dashboard() {
           </div>
         )}
 
-        <div className="bg-white shadow sm:rounded-lg p-6">
+        <div className="bg-white shadow-md sm:rounded-xl border border-gray-100 p-6">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-medium text-gray-900">{t('customer_title')}</h2>
             {savedCustomers.length > 0 && (
               <select
-                className="text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 onChange={(e) => {
                   const selected = savedCustomers.find(c => c.id === e.target.value);
                   if (selected) {
@@ -244,18 +244,18 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="bg-white shadow sm:rounded-lg p-6 mb-8">
+      <div className="bg-white shadow-md sm:rounded-xl border border-gray-100 p-6 mb-8">
         <h2 className="text-lg font-medium text-gray-900 mb-4">{t('invoice_details')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InputField label={t("invoice_number")} value={invoiceMeta.invoiceNumber} onChange={(e: any) => setInvoiceMeta({...invoiceMeta, invoiceNumber: e.target.value})} />
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">{t('invoice_date')}</label>
-            <input type="date" value={invoiceMeta.issueDate} onChange={(e: any) => setInvoiceMeta({...invoiceMeta, issueDate: e.target.value})} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border" />
+            <input type="date" value={invoiceMeta.issueDate} onChange={(e: any) => setInvoiceMeta({...invoiceMeta, issueDate: e.target.value})} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" />
           </div>
         </div>
       </div>
 
-      <div className="bg-white shadow sm:rounded-lg p-6">
+      <div className="bg-white shadow-md sm:rounded-xl border border-gray-100 p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-medium text-gray-900">{t('add_items')}</h2>
           <div className="flex bg-gray-100 rounded-lg p-1">
@@ -286,7 +286,7 @@ export default function Dashboard() {
                 <div className="mt-4 flex text-sm leading-6 text-gray-600 justify-center">
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:text-blue-500"
+                    className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                   >
                     <span>{t('select_file')}</span>
                     <input id="file-upload" name="file-upload" type="file" className="sr-only" accept=".csv, .xlsx, .xls, .json" onChange={handleFileChange} />
@@ -298,7 +298,7 @@ export default function Dashboard() {
             </div>
 
             {file && (
-              <div className="mt-4 flex items-center p-4 bg-blue-50 rounded-md">
+              <div className="mt-4 flex items-center p-4 bg-indigo-50 rounded-md">
                 <span className="text-sm font-medium text-blue-700">{file.name}</span>
               </div>
             )}
@@ -308,7 +308,7 @@ export default function Dashboard() {
             {savedCatalog.length > 0 && (
               <div className="mb-4">
                 <select
-                  className="text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
+                  className="text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
                   onChange={(e) => {
                     if (e.target.value === '') return;
                     const selected = savedCatalog.find(c => c.id === e.target.value);
@@ -359,7 +359,7 @@ export default function Dashboard() {
                           alert(t('alert_item_saved'));
                         }
                       }}
-                      className="text-gray-500 hover:text-blue-600 p-2 border border-transparent hover:bg-blue-50 rounded-md text-xs flex-1 sm:flex-none text-center"
+                      className="text-gray-500 hover:text-indigo-600 p-2 border border-transparent hover:bg-indigo-50 rounded-md text-xs flex-1 sm:flex-none text-center"
                       title="{t('save_catalog_title')}"
                     >
                       {t('save_catalog')}
@@ -371,7 +371,7 @@ export default function Dashboard() {
                 </div>
               </div>
             ))}
-            <button onClick={handleAddLineItem} className="text-sm font-medium text-blue-600 hover:text-blue-800">
+            <button onClick={handleAddLineItem} className="text-sm font-medium text-indigo-600 hover:text-blue-800">
               {t('add_new_position')}
             </button>
           </div>
@@ -394,7 +394,7 @@ export default function Dashboard() {
           <button
             onClick={() => handleUpload('pdf')}
             disabled={(mode === 'upload' && !file) || loading}
-            className={`inline-flex justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm ${((mode === 'upload' && !file) || loading) ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600`}
+            className={`inline-flex justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm ${((mode === 'upload' && !file) || loading) ? 'bg-blue-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-500'} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
             {loading ? t('creating') : t('download_pdf')}
           </button>

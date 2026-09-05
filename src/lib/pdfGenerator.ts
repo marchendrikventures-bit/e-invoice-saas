@@ -9,7 +9,7 @@ function hexToRgbStr(hex: string) {
   } : { r: 0.2, g: 0.2, b: 0.2 };
 }
 
-export async function generatePdfFromXml(xml: string, invoiceData: any, options?: { brandColor?: string, logoBase64?: string }): Promise<Buffer> {
+export async function generatePdfFromXml(xml: string, invoiceData: any, options?: { brandColor?: string, logoBase64?: string, isFreeTier?: boolean }): Promise<Buffer> {
   // Create a new PDFDocument
   const pdfDoc = await PDFDocument.create();
 
@@ -135,9 +135,21 @@ export async function generatePdfFromXml(xml: string, invoiceData: any, options?
     color: mainColor,
   });
 
+
   // Totals
   page.drawText(`Gesamtbetrag (inkl. MwSt):`, { x: 300, y, size: 12, font: boldFont, color: mainColor });
   page.drawText(`${totalAmount} EUR`, { x: 490, y, size: 12, font: boldFont, color: mainColor });
+
+  if (options?.isFreeTier) {
+    page.drawText('Generated for free by E-Invoice SaaS. Upgrade to PRO to remove this watermark.', {
+      x: 50,
+      y: 30,
+      size: 8,
+      font: font,
+      color: rgb(0.5, 0.5, 0.5),
+    });
+  }
+
 
   // Attach the XML file to create a Basic ZUGFeRD / Factur-X compatible file
   await pdfDoc.attach(Buffer.from(xml, 'utf-8'), 'factur-x.xml', {

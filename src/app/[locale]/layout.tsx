@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import '@/app/globals.css';
 import Navbar from '@/components/Navbar';
 import CookieBanner from '@/components/CookieBanner';
@@ -8,6 +9,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'European E-Invoice Generator',
@@ -31,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`min-h-screen bg-gray-50 flex flex-col font-sans`}>
+      <body className={`min-h-screen bg-[#fafafa] flex flex-col font-sans ${inter.className}`}>
         <NextAuthProvider>
           <NextIntlClientProvider messages={messages}>
             <Navbar />

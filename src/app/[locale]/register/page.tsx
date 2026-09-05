@@ -66,42 +66,42 @@ export default function Register() {
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
-              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3" placeholder="Email address" />
+              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" placeholder="Email address" />
             </div>
             <div>
-              <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3" placeholder="Password" />
+              <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" placeholder="Password" />
             </div>
           </div>
           
           <div className="space-y-3 mt-4 text-sm text-gray-600">
             <div className="flex items-start">
               <div className="flex h-6 items-center">
-                <input id="terms" type="checkbox" required checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
+                <input id="terms" type="checkbox" required checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="terms">{t('reg_agree')} <Link href="/de/impressum" className="text-blue-600 hover:underline">{t('reg_terms')}</Link>.</label>
+                <label htmlFor="terms">{t('reg_agree')} <Link href="/de/impressum" className="text-indigo-600 hover:underline">{t('reg_terms')}</Link>.</label>
               </div>
             </div>
             <div className="flex items-start">
               <div className="flex h-6 items-center">
-                <input id="privacy" type="checkbox" required checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
+                <input id="privacy" type="checkbox" required checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="privacy">{t('reg_privacy_read')} <Link href="/de/privacy" className="text-blue-600 hover:underline">{t('reg_privacy')}</Link> {t('reg_privacy_agree')}</label>
+                <label htmlFor="privacy">{t('reg_privacy_read')} <Link href="/de/privacy" className="text-indigo-600 hover:underline">{t('reg_privacy')}</Link> {t('reg_privacy_agree')}</label>
               </div>
             </div>
             <div className="flex items-start">
               <div className="flex h-6 items-center">
-                <input id="avv" type="checkbox" required checked={avvAccepted} onChange={(e) => setAvvAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600" />
+                <input id="avv" type="checkbox" required checked={avvAccepted} onChange={(e) => setAvvAccepted(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
               </div>
               <div className="ml-3">
-                <label htmlFor="avv">{t('reg_avv_agree')} <Link href="/de/avv" className="text-blue-600 hover:underline">{t('reg_avv')}</Link> gemäß Art. 28 DSGVO mit dem Anbieter.</label>
+                <label htmlFor="avv">{t('reg_avv_agree')} <Link href="/de/avv" className="text-indigo-600 hover:underline">{t('reg_avv')}</Link> gemäß Art. 28 DSGVO mit dem Anbieter.</label>
               </div>
             </div>
           </div>
 
           <div>
-            <button type="submit" disabled={loading} className="group relative flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-blue-300">
+            <button type="submit" disabled={loading} className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-blue-300">
               {loading ? 'Creating...' : 'Sign up'}
             </button>
           </div>
@@ -152,7 +152,7 @@ export default function Register() {
         </div>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Already have an account? <Link href="/login" className="font-semibold text-blue-600 hover:text-blue-500">{t('login_btn')}</Link>
+          Already have an account? <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">{t('login_btn')}</Link>
         </p>
       </div>
     </div>

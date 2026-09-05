@@ -37,7 +37,17 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
 
+
+    // Feature Gating: Limit catalog to 10 items for FREE tier
+    if (user.tier !== 'PRO') {
+      const itemCount = await prisma.catalogItem.count({ where: { userId: user.id } });
+      if (itemCount >= 10) {
+        return NextResponse.json({ error: 'Free tier is limited to 10 saved items. Upgrade to PRO for unlimited.' }, { status: 403 });
+      }
+    }
+
     // Input validation
+
     if (!data.description || typeof data.description !== 'string') {
       return NextResponse.json({ error: 'Description is required' }, { status: 400 });
     }

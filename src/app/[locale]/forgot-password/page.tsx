@@ -37,7 +37,7 @@ export default function ForgotPassword() {
           <h2 className="text-2xl font-bold text-gray-900">Check your email</h2>
           <p className="mt-2 text-gray-600">If an account exists with {email}, we have sent a password reset link.</p>
           <div className="mt-6">
-            <Link href="/login" className="text-blue-600 font-semibold hover:underline">Return to login</Link>
+            <Link href="/login" className="text-indigo-600 font-semibold hover:underline">Return to login</Link>
           </div>
         </div>
       </div>
@@ -52,9 +52,9 @@ export default function ForgotPassword() {
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-            <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+            <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
-          <button type="submit" disabled={loading} className="w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50">
+          <button type="submit" disabled={loading} className="w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50">
             {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>

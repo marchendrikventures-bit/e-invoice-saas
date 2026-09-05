@@ -104,7 +104,7 @@ export default function Settings() {
   const InputField = ({ label, value, onChange, required = false }: any) => (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
-      <input type="text" required={required} value={value} onChange={onChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border" />
+      <input type="text" required={required} value={value} onChange={onChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" />
     </div>
   );
 
@@ -153,7 +153,7 @@ export default function Settings() {
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700">{t('logo')}</label>
-                  <input type="file" accept="image/png, image/jpeg" onChange={handleLogoUpload} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                  <input type="file" accept="image/png, image/jpeg" onChange={handleLogoUpload} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-blue-700 hover:file:bg-indigo-100" />
                   {settings.logoBase64 && <img src={settings.logoBase64} alt="Logo Preview" className="mt-2 h-12 object-contain" />}
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function Settings() {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm bg-blue-600 hover:bg-blue-500 focus-visible:outline disabled:bg-blue-300"
+              className="inline-flex justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm bg-indigo-600 hover:bg-indigo-500 focus-visible:outline disabled:bg-blue-300"
             >
               {saving ? t('saving') : 'Save Settings'}
             </button>

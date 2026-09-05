@@ -58,7 +58,7 @@ export default function Navbar() {
                   {t('settings')}
                 </Link>
                 <span className="text-sm font-medium text-gray-800 hidden sm:inline-flex items-center">
-                  {session.user?.email} <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 shadow-sm">{(session.user as any)?.tier || 'FREE'}</span>
+                  {session.user?.email} <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-blue-800 shadow-sm">{(session.user as any)?.tier || 'FREE'}</span>
                 </span>
                 <button
                   onClick={() => signOut({ callbackUrl: '/' })}
@@ -72,7 +72,7 @@ export default function Navbar() {
                 <Link href="/login" className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">
                   {t('login')}
                 </Link>
-                <Link href="/register" className="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow-sm transition-colors">
+                <Link href="/register" className="text-sm font-semibold text-white bg-indigo-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow-sm transition-colors">
                   {t('register')}
                 </Link>
               </div>
