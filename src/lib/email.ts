@@ -12,7 +12,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
   }
 
   await resend.emails.send({
-    from: 'support@e-invoice-saas.com',
+    from: 'support@eu-invoice.app',
     to: email,
     subject: 'Reset your password',
     html: `

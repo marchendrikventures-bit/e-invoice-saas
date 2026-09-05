@@ -13,7 +13,7 @@ import { routing } from '@/i18n/routing';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'European E-Invoice Generator',
+  title: 'eu-invoice.app',
   description: 'Generate EN16931 compliant E-Invoices from CSV or Excel files.',
 };
 

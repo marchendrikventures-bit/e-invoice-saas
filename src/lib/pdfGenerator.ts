@@ -141,7 +141,7 @@ export async function generatePdfFromXml(xml: string, invoiceData: any, options?
   page.drawText(`${totalAmount} EUR`, { x: 490, y, size: 12, font: boldFont, color: mainColor });
 
   if (options?.isFreeTier) {
-    page.drawText('Generated for free by E-Invoice SaaS. Upgrade to PRO to remove this watermark.', {
+    page.drawText('Generated for free by eu-invoice.app. Upgrade to PRO to remove this watermark.', {
       x: 50,
       y: 30,
       size: 8,

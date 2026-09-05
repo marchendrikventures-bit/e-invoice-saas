@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className="flex">
             <div className="shrink-0 flex items-center">
               <Link href="/" className="text-xl font-bold text-blue-700 hover:text-blue-800 transition-colors">
-                E-Invoice EU
+                eu-invoice.app
               </Link>
             </div>
             <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">

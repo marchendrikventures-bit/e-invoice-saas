@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'E-Invoice PRO Subscription',
+              name: 'eu-invoice.app PRO Subscription',
               description: 'Unlimited ZUGFeRD / XRechnung invoices, API access, and Custom Branding.',
             },
             unit_amount: 1295, // 12.95 EUR
