@@ -356,6 +356,6 @@ export async function POST(req: NextRequest) {
 
   } catch (error: any) {
     console.error('Invoice generation error:', error);
-    return NextResponse.json({ error: error.message || 'Error generating invoice' }, { status: 500 });
+    return NextResponse.json({ error: 'Error generating invoice. Please check your input data.' }, { status: 500 });
   }
 }
