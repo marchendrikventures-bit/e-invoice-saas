@@ -10,6 +10,7 @@ export default function PricingPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const t = useTranslations('Pricing');
+  const tier = session?.user?.tier;
 
   const handleUpgrade = async () => {
     if (!session) {
@@ -113,7 +114,7 @@ export default function PricingPage() {
               <p className="mt-4 text-sm leading-6 text-blue-200">{t('pro_desc')}</p>
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span className="text-4xl font-bold tracking-tight text-white">{t('pro_price')}</span>
-                <span className="text-sm font-semibold leading-6 text-blue-200">/Monat</span>
+                <span className="text-sm font-semibold leading-6 text-blue-200">{t('month')}</span>
               </p>
               <ul className="mt-8 space-y-3 text-sm leading-6 text-indigo-100">
                 {proFeatures.map((f, i) => (
@@ -125,10 +126,10 @@ export default function PricingPage() {
             </div>
             <button
               onClick={handleUpgrade}
-              disabled={loading || (session?.user as any)?.tier === 'PRO'}
-              className="mt-8 block w-full rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:bg-gray-500"
+              disabled={loading || tier === 'PRO'}
+              className="mt-8 block w-full rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:bg-gray-500 disabled:cursor-not-allowed"
             >
-              {(session?.user as any)?.tier === 'PRO' ? t('current') : (loading ? '...' : t('upgrade'))}
+              {tier === 'PRO' ? t('current') : (loading ? '...' : t('upgrade'))}
             </button>
           </div>
 

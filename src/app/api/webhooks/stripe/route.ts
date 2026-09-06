@@ -22,8 +22,9 @@ export async function POST(req: NextRequest) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET as string
     );
-  } catch (err: any) {
-    return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Invalid signature';
+    return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
   }
 
   try {
@@ -56,7 +57,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ received: true });
-  } catch (err: any) {
+  } catch (err) {
     console.error('Webhook handler error:', err);
     return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 });
   }

@@ -2,6 +2,11 @@
 import { useState, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { AlertTriangle } from 'lucide-react';
+import { PasswordInput } from '@/components/ui/Field';
+import { Button } from '@/components/ui/Button';
+import { Alert } from '@/components/ui/Alert';
+import { AuthShell } from '@/components/ui/AuthShell';
 
 function ResetPasswordForm() {
   const t = useTranslations('Auth');
@@ -14,8 +19,8 @@ function ResetPasswordForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return setError('Invalid token');
     setLoading(true);
+    setError('');
     try {
       const res = await fetch('/api/auth/reset-password', {
         method: 'POST',
@@ -27,39 +32,49 @@ function ResetPasswordForm() {
         throw new Error(data.error || 'Failed to reset password');
       }
       router.push('/login?reset=success');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to reset password');
     } finally {
       setLoading(false);
     }
   };
 
   if (!token) {
-    return <div className="text-center mt-20">{t('reset_invalid')}</div>;
+    return (
+      <AuthShell title={t('reset_title')}>
+        <div className="text-center animate-fade-in-up">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-50 mb-4">
+            <AlertTriangle className="h-6 w-6 text-amber-600" />
+          </div>
+          <p className="text-sm text-gray-600">{t('reset_invalid')}</p>
+        </div>
+      </AuthShell>
+    );
   }
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md space-y-8">
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('reset_title')}</h2>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-          <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">{t('reset_pass')}</label>
-            <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-          </div>
-          <button type="submit" disabled={loading} className="w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:opacity-50">
-            {loading ? 'Saving...' : t('reset_btn')}
-          </button>
-        </form>
-      </div>
-    </div>
+    <AuthShell title={t('reset_title')}>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        {error && <Alert kind="error">{error}</Alert>}
+        <PasswordInput
+          label={t('reset_pass')}
+          required
+          minLength={8}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
+        />
+        <Button type="submit" fullWidth loading={loading} size="lg">
+          {t('reset_btn')}
+        </Button>
+      </form>
+    </AuthShell>
   );
 }
 
 export default function ResetPassword() {
   return (
-    <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
+    <Suspense fallback={null}>
       <ResetPasswordForm />
     </Suspense>
   );

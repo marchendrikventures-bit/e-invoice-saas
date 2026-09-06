@@ -3,25 +3,26 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const user = await prisma.user.findUnique({ 
+    const user = await prisma.user.findUnique({
       where: { email: session.user.email },
       select: {
         companyName: true, street: true, city: true, zip: true, country: true, vat: true,
         iban: true, bic: true, bankName: true,
-        brandColor: true, logoBase64: true, apiKey: true, tier: true
+        brandColor: true, logoBase64: true, apiKey: true, tier: true, password: true
       }
     });
 
     if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    return NextResponse.json(user);
-  } catch (error: any) {
+    const { password, ...safeUser } = user;
+    return NextResponse.json({ ...safeUser, hasPassword: !!password });
+  } catch (error) {
     console.error('Settings GET error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
@@ -43,6 +44,20 @@ export async function POST(req: Request) {
     }
 
     const data = await req.json();
+
+    // SECURITY: Custom branding (brand color, logo) is a PRO-only feature.
+    // The UI only shows these fields for PRO users, but that's not enforced
+    // unless we also check it here — otherwise any FREE user could POST
+    // directly to this endpoint and get paid branding for free.
+    if (data.brandColor !== undefined || data.logoBase64 !== undefined) {
+      const currentUser = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { tier: true },
+      });
+      if (currentUser?.tier !== 'PRO') {
+        return NextResponse.json({ error: 'Pro tier required for custom branding' }, { status: 403 });
+      }
+    }
 
     // Input validation
     if (data.brandColor !== undefined && !isValidHexColor(data.brandColor)) {
@@ -73,7 +88,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Settings POST error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }

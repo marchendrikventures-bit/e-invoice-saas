@@ -1,27 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
+import { isRateLimited, getClientIp } from '@/lib/rateLimit';
 
-// SECURITY: Simple in-memory rate limiter
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const MAX_ATTEMPTS = 5;
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return false;
-  }
-  entry.count++;
-  return entry.count > MAX_ATTEMPTS;
-}
-
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
-    if (isRateLimited(ip)) {
+    const ip = getClientIp(req);
+    if (isRateLimited(`register:${ip}`, RATE_LIMIT_WINDOW, MAX_ATTEMPTS)) {
       return NextResponse.json({ error: 'Too many registration attempts. Please try again later.' }, { status: 429 });
     }
 
@@ -69,7 +57,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ user: { id: user.id, email: user.email } }, { status: 201 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Registration error:', error);
     return NextResponse.json({ error: 'Registration failed. Please try again.' }, { status: 500 });
   }

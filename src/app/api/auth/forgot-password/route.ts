@@ -2,27 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { sendPasswordResetEmail } from '@/lib/email';
 import crypto from 'crypto';
+import { isRateLimited, getClientIp } from '@/lib/rateLimit';
 
-// SECURITY: Rate limit forgot-password requests
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const MAX_ATTEMPTS = 3;
 
-function isRateLimited(key: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(key);
-  if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return false;
-  }
-  entry.count++;
-  return entry.count > MAX_ATTEMPTS;
-}
-
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
-    if (isRateLimited(ip)) {
+    const ip = getClientIp(req);
+    if (isRateLimited(`forgot-password:${ip}`, RATE_LIMIT_WINDOW, MAX_ATTEMPTS)) {
       return NextResponse.json({ success: true }); // Don't reveal rate limiting
     }
 
@@ -55,7 +43,7 @@ export async function POST(req: NextRequest) {
     await sendPasswordResetEmail(email, token);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Forgot password error:', error);
     return NextResponse.json({ success: true }); // Don't reveal errors
   }

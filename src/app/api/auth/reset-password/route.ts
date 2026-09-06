@@ -10,6 +10,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing token or password' }, { status: 400 });
     }
 
+    if (password.length < 8) {
+      return NextResponse.json({ error: 'Password must be at least 8 characters long' }, { status: 400 });
+    }
+
     const resetRecord = await prisma.passwordResetToken.findUnique({
       where: { token }
     });
@@ -18,7 +22,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid or expired token' }, { status: 400 });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
     await prisma.user.update({
       where: { email: resetRecord.email },
@@ -30,7 +34,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Reset password error:', error);
     return NextResponse.json({ error: 'Password reset failed. Please try again.' }, { status: 500 });
   }

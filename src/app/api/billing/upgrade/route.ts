@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2026-08-26.dahlia',
 });
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ url: checkoutSession.url });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Stripe checkout error:', error);
     return NextResponse.json({ error: 'Failed to create checkout session. Please try again.' }, { status: 500 });
   }

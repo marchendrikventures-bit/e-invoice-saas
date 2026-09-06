@@ -1,4 +1,5 @@
 import { NextAuthOptions } from 'next-auth';
+import type { Adapter } from 'next-auth/adapters';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@auth/prisma-adapter';
@@ -16,7 +17,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,
+  // @auth/prisma-adapter targets the newer @auth/core Adapter type, which is
+  // structurally compatible with but not identical to next-auth v4's own
+  // Adapter type — a known cross-package mismatch. Casting to the concrete
+  // `Adapter` type (rather than `any`) keeps this a documented, narrow
+  // workaround instead of an escape hatch from type-checking altogether.
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
@@ -42,19 +48,27 @@ export const authOptions: NextAuthOptions = {
   ],
   session: { strategy: 'jwt' },
   callbacks: {
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
         const dbUser = await prisma.user.findUnique({ where: { id: user.id } });
         token.tier = dbUser?.tier || 'FREE';
       }
-      if (trigger === "update" && session?.tier) token.tier = session.tier;
+      // SECURITY: Never trust a client-supplied `session` payload for tier —
+      // re-read it from the DB instead. `trigger === "update"` is reachable by
+      // any signed-in client via `useSession().update(...)`, so accepting
+      // arbitrary fields from it (as this used to) let a FREE user grant
+      // themselves PRO without paying.
+      if (trigger === "update" && token.id) {
+        const dbUser = await prisma.user.findUnique({ where: { id: token.id as string } });
+        token.tier = dbUser?.tier || 'FREE';
+      }
       return token;
     },
     async session({ session, token }) {
       if (token && session.user) {
-        (session.user as any).id = token.id as string;
-        (session.user as any).tier = token.tier;
+        session.user.id = token.id;
+        session.user.tier = token.tier;
       }
       return session;
     }

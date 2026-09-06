@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 
-export async function POST(req: Request) {
+export async function POST() {
   try {
     const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true, apiKey: updated.apiKey });
-  } catch (error: any) {
+  } catch (error) {
     console.error('API Key generation error:', error);
     return NextResponse.json({ error: 'Failed to generate API key' }, { status: 500 });
   }
