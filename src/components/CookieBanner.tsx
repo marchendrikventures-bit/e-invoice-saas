@@ -1,6 +1,8 @@
 'use client';
 import { useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
+import { Cookie } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 // Reading localStorage on mount and syncing it into component state via an
 // effect causes an extra render pass (and the banner "popping in" after
@@ -38,29 +40,22 @@ export default function CookieBanner() {
   if (consent !== null) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 pb-2 sm:pb-5 z-50">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="p-2 rounded-lg bg-gray-900 shadow-lg sm:p-3">
-          <div className="flex items-center justify-between flex-wrap">
-            <div className="w-0 flex-1 flex items-center">
-              <span className="flex p-2 rounded-lg bg-gray-800">
-                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </span>
-              <p className="ml-3 font-medium text-white truncate">
-                <span className="md:hidden">{t('title')}</span>
-                <span className="hidden md:inline">{t('description')}</span>
-              </p>
-            </div>
-            <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto flex space-x-2">
-              <button onClick={() => setConsent('true')} className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-white hover:bg-gray-50">
-                {t('accept')}
-              </button>
-              <button onClick={() => setConsent('false')} className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700">
-                {t('decline')}
-              </button>
-            </div>
+    <div className="fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6 animate-fade-in-up">
+      <div className="mx-auto max-w-3xl rounded-2xl bg-gray-900 shadow-2xl shadow-black/20 p-4 sm:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-800 text-white">
+              <Cookie className="h-4.5 w-4.5" />
+            </span>
+            <p className="text-sm text-gray-300 leading-relaxed">{t('description')}</p>
+          </div>
+          <div className="flex gap-2 shrink-0 self-end sm:self-auto">
+            <Button variant="ghost" className="!text-gray-300 hover:!text-white hover:!bg-white/10" onClick={() => setConsent('false')}>
+              {t('decline')}
+            </Button>
+            <Button variant="secondary" onClick={() => setConsent('true')}>
+              {t('accept')}
+            </Button>
           </div>
         </div>
       </div>
