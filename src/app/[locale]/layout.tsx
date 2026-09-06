@@ -64,6 +64,9 @@ export default async function RootLayout({
                     <Link href="/avv" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
                       {t('avv')}
                     </Link>
+                    <Link href="/accessibility" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                      {t('accessibility')}
+                    </Link>
                   </div>
                 </div>
               </footer>
